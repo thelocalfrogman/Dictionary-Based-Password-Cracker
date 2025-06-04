@@ -1,9 +1,13 @@
 # Dictionary-Based-Password-Cracker
 
-First draft of hash cracking algorithm
-
+Current version (pre-code) hash cracking algorithm
 
 ```mermaid
+---
+config:
+  theme: redux
+  layout: dagre
+---
 flowchart TD
     A(["Program Starts"]) --> n1["Prompt for input file"]
     n1 --> n3["Is file type / content is valid"]
@@ -26,11 +30,11 @@ flowchart TD
     n20 --> n6
     n21 --> n6
     n22 --> n6
-    n14 --> n23["Initiate for loop, for items in list"]
+    n14 --> n23["Initiate <b>for</b> loop, for items in list"]
     n15 --> n23
     n17 --> n23
     n16 --> n23
-    n23 --> n49["Initiate progress bar"]
+    n23 --> n49["Initiate progress bar - updates for each iteration"]
     n23 -- Loop exited --> n44["Stop"]
     n25 --> n13
     n26["Hash next string in dictionary list"] --> n27["Compare dictionary hashe to next input hashe from user"]
@@ -50,7 +54,6 @@ flowchart TD
     n44 --> n45["Display number of cracked hashes and display CSV file path"]
     n45 --> n47["Program Ends"]
     n49 --> n26
-    n48["Untitled Node"]
     n1@{ shape: lean-r}
     n3@{ shape: diam}
     n8@{ shape: lean-r}
@@ -65,6 +68,6 @@ flowchart TD
     n28@{ shape: diam}
     n32@{ shape: diam}
     n47@{ shape: rounded}
-    style A fill:#C8E6C9
-    style n47 fill:#FFCDD2
+    style A fill:#00C853
+    style n47 fill:#D50000
 ```
