@@ -38,7 +38,7 @@ flowchart TD
     n23 --> n49["Initiate progress bar - updates for each iteration"]
     n23 -- Loop exited --> n44["Stop"]
     n25 --> n13
-    n26["Hash next string in dictionary list"] --> n27["Compare dictionary hashe to next input hashe from user"]
+    n26["Hash next string in dictionary list"] --> n27["Compare dictionary hash to input hash from user"]
     n27 --> n28["Check for match"]
     n28 --> n29["True"] & n30["False"]
     n30 --> n32["Check variation variables<br>(First True statement runs)"]
