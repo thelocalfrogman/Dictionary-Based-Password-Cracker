@@ -1,7 +1,4 @@
 
 # Authors:
-#   William
-#   George
-erm
-pepe
-hehe
+# - William
+# - George
