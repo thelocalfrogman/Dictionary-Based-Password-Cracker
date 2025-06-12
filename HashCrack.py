@@ -14,38 +14,31 @@ hash = ""
 with open("./Testing/input.txt", "r") as input_file:
     input_list = [line.strip() for line in input_file] # Gets each line of input file
 
-print(input_list)
-
 def checkHash(input_list):
-    # Get the first item from the list
-    first_input_hash = input_list[0]
+    target_hash = input_list[0]
+    hashLength = len(target_hash) # Count the number of characters in the first item of input file
+    print("Detected hash length:", hashLength)
 
-    # Count the number of characters in the first item
-    hashLength = len(first_input_hash)
-    print(hashLength)
-
+    # Find hash based on length
     if hashLength == 32:
-        # MD5 Hash
-        hash = "MD5"
+        hash_func = hashlib.md5
+    elif hashLength == 40:
+        hash_func = hashlib.sha1
+    elif hashLength == 64:
+        hash_func = hashlib.sha256
+    elif hashLength == 128:
+        hash_func = hashlib.sha512
+    else:
+        print("Unknown hash type.")
+        return
 
-    if hashLength == 40:
-        # SHA1 Hash
-        hash = "SHA1"
-
-    if hashLength == 64:
-        # SHA256 Hash
-        hash = "SHA256"
-        with open("./Testing/rockyou.txt", "r") as wordlist_file:
-            wordlist_items = [line.strip() for line in wordlist_file]
-            for items in wordlist_items:
-                wordlist_hash = hashlib.md5(item.encode()).hexdigest() # Hashes wordlist item
-                if wordlist_hash == target_hash:
-                    print(f"Match found: {input_list}")
-                else:
-                    print("No match found") 
-
-    if hashLength == 128:
-      # SHA512 Hash
-      hash = "SHA512"
+    with open("./Testing/rockyou.txt", "r", encoding="latin-1") as wordlist_file:
+        for line in wordlist_file:
+            word = line.strip()
+            word_hash = hash_func(word.encode()).hexdigest() # Hashes wordlist item
+            if word_hash == target_hash:
+                print(f"Match found: {word}")
+                return
+        print("No match found.")
 
 checkHash(input_list)
