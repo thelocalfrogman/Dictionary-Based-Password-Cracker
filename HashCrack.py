@@ -1,5 +1,3 @@
-
-# Feature: Converting input file to list and figure out what hash to use
 import os
 import csv
 import hashlib
@@ -11,7 +9,7 @@ use_upper_input = input("Check UPPERCASE versions? (y/n): ").lower()
 use_lower_input = input("Check lowercase versions? (y/n): ").lower()
 use_title_input = input("Check TitleCase versions? (y/n): ").lower()
 
-with open("./Testing/Very_Short/sha512_input_very_short.txt", "r") as input_file:
+with open("./Testing/Short/sha256_input_short.txt", "r") as input_file:
     input_list = [line.strip() for line in input_file] # Gets each line of input file
 # Hash input files to test:
 #   Long: (1500 Hashes)
@@ -47,11 +45,11 @@ def detect_hash_type(hash_string):
 # Try matching word and variations
 def try_variations(word, target_hash, hash_func, use_upper, use_lower, use_title):
     attempts = [(word, word)] # Initialises the list of variations to try, starting with the plain attempt e.g 'password', 'password'
-    if use_upper:
+    if use_upper == True:
         attempts.append((word.upper(), 'upper')) # Each variation is added to the attempts list, with the identifyer of what the variation is e.g 'PASSWORD', 'upper'
-    if use_lower:
+    if use_lower == True:
         attempts.append((word.lower(), 'lower'))
-    if use_title:
+    if use_title == True:
         attempts.append((word.title(), 'title'))
 
     for variant, label in attempts: # Looping through the attempts list containing the variations
