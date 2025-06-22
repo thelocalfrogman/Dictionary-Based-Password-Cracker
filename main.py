@@ -125,7 +125,7 @@ file_path = whathash(file_path)
 dic_path  = whatdic(dic_path)
 
 # Prompt for variations to test
-use_upper_input = input("Check UPPERCASE versions? (y/n): ").lower() == 'y' # "== 'y'" turn the answer into a boolean True/False statement y being True, anything else being False
+use_upper_input = input("Check UPPERCASE versions? (y/n): ").lower() == 'y' # "== 'y'" turn the answer into a boolean True/False statement
 use_lower_input = input("Check lowercase versions? (y/n): ").lower() == 'y'
 use_title_input = input("Check TitleCase versions? (y/n): ").lower() == 'y'
 
