@@ -1,8 +1,5 @@
 # Dictionary-Based-Password-Cracker
 
-**Current Issues**
-- The hash cracking is so quick that the progress bar is pointless
-
 ## Setup
 
 ```python
