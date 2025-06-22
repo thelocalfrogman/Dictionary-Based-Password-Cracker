@@ -1,23 +1,88 @@
 # Dictionary-Based-Password-Cracker
 
-## Setup
+This tool is designed to crack password hashes using a dictionary attack. It supports common hash types (MD5, SHA-1, SHA-256, SHA-512) and allows users to apply case variations to increase the chances of a successful match.
 
-```python
-python -m venv venv
+### Requirements
+- Python 3.8 or newer
+- tqdm package installed (used for progress display)
+
+To install `tqdm`, run:
+```bash
+`pip install tqdm`
+```
+---
+
+### How to Use
+
+#### Step 1: Prepare Input Files
+You will need:
+- A hash list file (`.txt`) with one hash per line
+  - Note that in this repo there are 12 hash list files provided for testing, they are listed in a comment at the top of `main.py`. Feel free to use these for your testing.
+- A dictionary file (`.txt`) with one word per line (e.g. `rockyou.txt`)
+
+#### Step 2: Run the Program
+From a terminal or command prompt, navigate to the folder containing the script and run:
+```bash
+python main.py
 ```
 
-```python
-source venv/bin/activate
-```
+#### Step 3: Follow the Prompts
+The program will ask you for:
+1. The path to your hash file
+    - Example: `C:\Users\YourName\Documents\hashes.txt`
+2. The path to your dictionary file
+    - Example: `C:\Users\YourName\Documents\rockyou.txt`
+3. Whether to check **UPPERCASE** versions of each dictionary word (`y` or `n`)
+4. Whether to check **lowercase** versions (`y` or `n`)
+5. Whether to check **TitleCase** versions (`y` or `n`)
 
-```python
-pip install tqdm
+Once options are selected, the cracking process begins. A progress bar will display progress in real time.
+
+---
+
+### Output
+The program outputs results to a file called: `cracked_hashes.csv`
+
+Each line in the file contains: `<original_hash>,<matching_password>`
+- For example: `5f4dcc3b5aa765d61d8327deb882cf99,password`
+
+The CSV file will be updated each time the program finds a match, and results are appended, not overwritten.
+
+### Notes and Tips
+- The program identifies hash types automatically based on length
+- Dictionary files must be in plain text and encoded in a compatible format (the script reads using `"latin-1"` to support extended characters)
+- If a file path is incorrect or cannot be read, you will be prompted to re-enter it
+- If a hash does not match any dictionary entry, it will be skipped, and you will be notified in the terminal output
+
+### Example Session
+
+```pgsql
+Please enter the hashes file path: hashes.txt 
+The file path 'hashes.txt' is valid. 
+The file extension is: .txt  
+
+Please enter the dictionary file path: rockyou.txt 
+The file path 'rockyou.txt' is valid. 
+The file extension is: .txt  
+
+Check UPPERCASE versions? (y/n): y 
+Check lowercase versions? (y/n): y 
+Check TitleCase versions? (y/n): n  
+
+Cracking hashes: 100%|████████████████████████████████████████| 5/5 [00:01<00:00,  4.91it/s]  
+Match found: password 
+
+No match found. 
+
+Match found: 123456
+
+Cracked Hashes: 3 
+Cracked Hash File: cracked_hashes.csv
 ```
 
 ## Algorithm
 
-Current version (pre-code) hash cracking algorithm
-Can also be found on Mermaid [here](https://www.mermaidchart.com/app/projects/55559564-4b3b-4298-a2aa-04db4e233f2b/diagrams/0b39b44d-468d-4ed4-852f-a402242a71af/version/v0.1/edit).
+Final version of the hash cracking algorithm...
 
 ```mermaid
 ---
